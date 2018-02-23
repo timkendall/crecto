@@ -229,6 +229,9 @@ module Crecto
         elsif config.adapter == Crecto::Adapters::Postgres || (config.adapter == Crecto::Adapters::Mysql && tx.nil?) ||
               (config.adapter == Crecto::Adapters::SQLite3 && tx.nil?)
           new_instance = changeset.instance.class.from_rs(query.as(DB::ResultSet)).first?
+            
+          puts new_instance
+
           changeset = new_instance.class.changeset(new_instance) if new_instance
         end
       rescue e
